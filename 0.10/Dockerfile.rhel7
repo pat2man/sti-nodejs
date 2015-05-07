@@ -26,6 +26,12 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum clean all -y && \
     chown -R default:default /opt/openshift
 
+RUN yum groupinstall -y "Development Tools" 
+
+RUN yum install -y git
+
+COPY npmrc /opt/openshift/src/.npmrc
+
 USER default
 
 # Set the default CMD to print the usage of the language image
