@@ -26,6 +26,12 @@ RUN yum install -y \
     yum install -y --setopt=tsflags=nodocs nodejs010 && \
     yum clean all -y && \
     chown -R default:default /opt/openshift
+    
+RUN yum groupinstall -y "Development Tools" 
+
+RUN yum install -y git
+
+COPY npmrc /opt/openshift/src/.npmrc
 
 USER default
 
